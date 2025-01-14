@@ -36,21 +36,22 @@ public class ChoicesService {
 				.reduce(0.0, (x,y) -> x+y);
 	}
 	
-	public List<Double> showSalaryEmployees(boolean descending){
-		if(descending) {
-			return listEmployee.stream()
+	public List<Double> showSalaryEmployees(){
+		return listEmployee.stream()
 			.map(e -> e.getSalary())
 			.sorted((v1,v2)-> -Double.compare(v1, v2))
 			.collect(Collectors.toList());
-		}
-		return listEmployee.stream()
-		.map(e -> e.getSalary())
-		.sorted((v1,v2)-> Double.compare(v1, v2))
-		.collect(Collectors.toList());
-		
+
 	}
 	
-	public List<String> showNameAscending(){
+	
+	public List<String> showNameAscending(boolean salary){
+		if(salary) {
+			return listEmployee.stream()
+					.sorted((e1,e2)-> Double.compare(e1.getSalary(), e2.getSalary()))
+					.map((e)-> e.getName())
+					.collect(Collectors.toList());
+		}
 		return listEmployee.stream()
 				.map(e -> e.getName())
 				.sorted((s1,s2)-> s1.compareTo(s2))
