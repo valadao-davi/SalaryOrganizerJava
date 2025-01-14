@@ -32,6 +32,7 @@ public class Program {
 				line = br.readLine();
 			}
 			boolean running = false;
+			Choice
 			while(running) {
 				System.out.println("\nSelect an option:");
 	            System.out.println("1. Show emails of employees with salary below a specified value");
@@ -43,22 +44,18 @@ public class Program {
 	            
 	            int choice = sc.nextInt();
 	            sc.nextLine();
+	            
+	            switch(choice) {
+	            	case 1:
+	            		System.out.println("Insert a salary to threshold to display employee emails: ");
+	        			double filterValue = sc.nextDouble();
+	            }
 			}
-			System.out.println("Insert a value to filter in base of salary: ");
-			double filterValue = sc.nextDouble();
+			
 			System.out.println("Insert a letter to find the sum of people with this initial: ");
 			char nameInitial = sc.next().toUpperCase().charAt(0);
-			
-			List<String> emailSortedSalary = employeeList.stream()
-											.filter(e -> e.getSalary() >= filterValue)
-											.map(e -> e.getEmail())
-											.sorted((s1, s2) -> s1.toUpperCase().compareTo(s2.toUpperCase()))
-											.collect(Collectors.toList());
 			emailSortedSalary.forEach(System.out::println);
-			double sumInitial = employeeList.stream()
-								.filter(e -> e.getName().toUpperCase().charAt(0) == nameInitial)
-								.map(e -> e.getSalary())
-								.reduce(0.0, (x,y) -> x+y);
+		
 			System.out.println("Sum of salary of people whose name starts with " + nameInitial + ": $" + sumInitial);
 			
 		}catch(IOException e) {
