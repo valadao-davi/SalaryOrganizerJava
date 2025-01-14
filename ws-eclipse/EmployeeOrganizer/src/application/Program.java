@@ -47,7 +47,7 @@ public class Program {
 			System.out.println("Ocurred an error while trying to read the archive: " + e.getMessage());
 		}
 		catch(InputMismatchException e) {
-			System.out.println("Value input error! try to insert numbers with . instead of ,");
+			System.out.println("Value input error!");
 		}
 		
 		sc.close();
