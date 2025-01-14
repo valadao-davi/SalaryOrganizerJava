@@ -5,19 +5,23 @@ import java.util.List;
 import entities.Employee;
 
 public class ChoicesService {
-	private List<Employee> listProducts;
+	private List<Employee> listEmployee;
 	
-	public ChoicesService(List<Employee> listProducts) {
+	public ChoicesService(List<Employee> listEmployee) {
 		super();
-		this.listProducts = listProducts;
+		this.listEmployee = listEmployee;
 	}
 
 	public List<Employee> getListProducts() {
-		return listProducts;
+		return listEmployee;
 	}
 
-	public void setListProducts(List<Employee> listProducts) {
-		this.listProducts = listProducts;
+	public void setListProducts(List<Employee> listEmployee) {
+		this.listEmployee = listEmployee;
+	}
+	
+	public List<String> emailsBelowSalaray(List<Employee> listEmployee){
+		return listEmployee
 	}
 
 }
