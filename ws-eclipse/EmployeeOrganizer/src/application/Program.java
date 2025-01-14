@@ -34,12 +34,12 @@ public class Program {
 			System.out.println("Insert a value to filter in base of salary: ");
 			double filterValue = sc.nextDouble();
 			
-			List<String> namesSortedSalary = employeeList.stream()
+			List<String> emailSortedSalary = employeeList.stream()
 											.filter(e -> e.getSalary() >= filterValue)
-											.map(e -> e.getName())
+											.map(e -> e.getEmail())
 											.sorted((s1, s2) -> s1.toUpperCase().compareTo(s2.toUpperCase()))
 											.collect(Collectors.toList());
-			namesSortedSalary.forEach(System.out::println);
+			emailSortedSalary.forEach(System.out::println);
 			
 		}catch(IOException e) {
 			System.out.println("Ocurred an error while trying to read the archive: " + e.getMessage());
