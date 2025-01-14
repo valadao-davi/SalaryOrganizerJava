@@ -31,6 +31,19 @@ public class Program {
 				employeeList.add(new Employee(dividedItems[0], dividedItems[1], Double.parseDouble(dividedItems[2])));
 				line = br.readLine();
 			}
+			boolean running = false;
+			while(running) {
+				System.out.println("\nSelect an option:");
+	            System.out.println("1. Show emails of employees with salary below a specified value");
+	            System.out.println("2. Show sum of salaries of employees with names starting with a given initial");
+	            System.out.println("3. Show salaries in descending order");
+	            System.out.println("4. Show employees sorted by name (ascending)");
+	            System.out.println("5. Show employees sorted by salary (ascending)");
+	            System.out.println("6. Exit");
+	            
+	            int choice = sc.nextInt();
+	            sc.nextLine();
+			}
 			System.out.println("Insert a value to filter in base of salary: ");
 			double filterValue = sc.nextDouble();
 			System.out.println("Insert a letter to find the sum of people with this initial: ");
