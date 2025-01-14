@@ -8,8 +8,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
+import Service.ChoicesService;
 import entities.Employee;
 
 public class Program {
@@ -32,7 +32,7 @@ public class Program {
 				line = br.readLine();
 			}
 			boolean running = false;
-			Choice
+			ChoicesService cs = new ChoicesService(employeeList);
 			while(running) {
 				System.out.println("\nSelect an option:");
 	            System.out.println("1. Show emails of employees with salary below a specified value");
@@ -49,14 +49,20 @@ public class Program {
 	            	case 1:
 	            		System.out.println("Insert a salary to threshold to display employee emails: ");
 	        			double filterValue = sc.nextDouble();
+	        			List<String> emailsFiltered = cs.emailsBelowSalary(filterValue);
+	        			emailsFiltered.forEach(System.out::println);
+	        			break;
+	            	case 2:
+	            		System.out.println("Insert a letter to find the sum of people with this initial: ");
+	        			char nameInitial = sc.next().toUpperCase().charAt(0);
+	        			double sumInitial = cs.sumBasedInitial(nameInitial);
+	        			System.out.println("Sum of salary of people whose name starts with " + nameInitial + ": $" + sumInitial);
+	        			break;
+
 	            }
 			}
 			
-			System.out.println("Insert a letter to find the sum of people with this initial: ");
-			char nameInitial = sc.next().toUpperCase().charAt(0);
-			emailSortedSalary.forEach(System.out::println);
 		
-			System.out.println("Sum of salary of people whose name starts with " + nameInitial + ": $" + sumInitial);
 			
 		}catch(IOException e) {
 			System.out.println("Ocurred an error while trying to read the archive: " + e.getMessage());
