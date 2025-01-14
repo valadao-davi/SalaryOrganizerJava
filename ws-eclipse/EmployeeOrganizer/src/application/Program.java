@@ -33,6 +33,8 @@ public class Program {
 			}
 			System.out.println("Insert a value to filter in base of salary: ");
 			double filterValue = sc.nextDouble();
+			System.out.println("Insert a letter to find the sum of people with this initial: ");
+			char nameInitial = sc.next().charAt(0);
 			
 			List<String> emailSortedSalary = employeeList.stream()
 											.filter(e -> e.getSalary() >= filterValue)
