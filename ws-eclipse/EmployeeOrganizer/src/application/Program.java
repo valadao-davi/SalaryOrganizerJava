@@ -18,8 +18,8 @@ public class Program {
 
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Set the path of the project: ");
-		String path = "c:\\temp\\employees.csv";
+		System.out.print("Set the path of the project: ");
+		String path = sc.nextLine();
 		
 		
 		try(BufferedReader br = new BufferedReader(new FileReader(path))){
@@ -34,7 +34,7 @@ public class Program {
 			System.out.println("Insert a value to filter in base of salary: ");
 			double filterValue = sc.nextDouble();
 			System.out.println("Insert a letter to find the sum of people with this initial: ");
-			char nameInitial = sc.next().charAt(0);
+			char nameInitial = sc.next().toUpperCase().charAt(0);
 			
 			List<String> emailSortedSalary = employeeList.stream()
 											.filter(e -> e.getSalary() >= filterValue)
@@ -43,7 +43,7 @@ public class Program {
 											.collect(Collectors.toList());
 			emailSortedSalary.forEach(System.out::println);
 			double sumInitial = employeeList.stream()
-								.filter(e -> e.getName().charAt(0) == nameInitial)
+								.filter(e -> e.getName().toUpperCase().charAt(0) == nameInitial)
 								.map(e -> e.getSalary())
 								.reduce(0.0, (x,y) -> x+y);
 			System.out.println("Sum of salary of people whose name starts with " + nameInitial + ": $" + sumInitial);
