@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -14,6 +16,7 @@ public class Program {
 
 	public static void main(String[] args) {
 
+		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Set the path of the project: ");
 		String path = "c:\\temp\\employees.csv";
@@ -40,6 +43,9 @@ public class Program {
 			
 		}catch(IOException e) {
 			System.out.println("Ocurred an error while trying to read the archive: " + e.getMessage());
+		}
+		catch(InputMismatchException e) {
+			System.out.println("Value input error! try to insert numbers with . instead of ,");
 		}
 		
 		sc.close();
