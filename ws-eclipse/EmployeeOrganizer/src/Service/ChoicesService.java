@@ -58,10 +58,25 @@ public class ChoicesService {
 				.sorted((s1,s2)-> s1.compareTo(s2))
 				.collect(Collectors.toList());
 	}
+	public boolean continueChoice(Scanner sc) {
+    	System.out.println();
+	    System.out.println("Continue service? Y/N ");
+	    
+	    sc.nextLine(); 
+	    
+	    String choice = sc.nextLine().trim().toUpperCase();
+	    System.out.println(choice);
+	    
+	    if (choice.equals("Y")) {
+	        return true;
+	    }
+	    
+	    System.out.println("END OF THE SERVICE.");
+	    return false;
+	}
 	
-	public void choiceInterface() {
-		Scanner sc = new Scanner(System.in);
-		boolean running = false;
+	public void choiceInterface(Scanner sc) {
+		boolean running = true;
 		while(running) {
 			System.out.println("\nSelect an option:");
             System.out.println("1. Show emails of employees with salary below a specified value");
@@ -81,6 +96,7 @@ public class ChoicesService {
         			double filterValue = sc.nextDouble();
         			List<String> emailsFiltered = this.emailsBelowSalary(filterValue);
         			emailsFiltered.forEach(System.out::println);
+        			running = this.continueChoice(sc);
         			break;
             	case 2:
             		System.out.println("SUM SALARY BASED OF INITIAL SERVICE: ");
@@ -88,21 +104,30 @@ public class ChoicesService {
         			char nameInitial = sc.next().toUpperCase().charAt(0);
         			double sumInitial = this.sumBasedInitial(nameInitial);
         			System.out.println("Sum of salary of people whose name starts with " + nameInitial + ": $" + sumInitial);
+        			running = this.continueChoice(sc);
         			break;
             	case 3:
             		System.out.println("SALARIES IN DESCENDING ORDER SERVICE: ");
             		List<Double> salaries = this.showSalaryEmployees();
             		salaries.forEach((s) -> System.out.println("$" + s));
+        			running = this.continueChoice(sc);
             		break;
             	case 4:
             		System.out.println("EMPLOYEES SORTED BY NAME SERVICE: ");
             		List<String> names = this.showNameAscending(false);
             		names.forEach(System.out::println);
+        			running = this.continueChoice(sc);
             		break;
             	case 5:
             		System.out.println("EMPLOYEES SORTED BY SALARY SERVICE: ");
             		List<String> namesSalary = this.showNameAscending(true);
             		namesSalary.forEach(System.out::println);
+        			running = this.continueChoice(sc);
+            		break;
+            	case 6:
+            		System.out.println("END OF THE SERVICE.");
+            		running = false;
+            		sc.close();
             }
 		}
 	}
