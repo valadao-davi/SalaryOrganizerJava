@@ -42,6 +42,11 @@ public class Program {
 											.sorted((s1, s2) -> s1.toUpperCase().compareTo(s2.toUpperCase()))
 											.collect(Collectors.toList());
 			emailSortedSalary.forEach(System.out::println);
+			double sumInitial = employeeList.stream()
+								.filter(e -> e.getName().charAt(0) == nameInitial)
+								.map(e -> e.getSalary())
+								.reduce(0.0, (x,y) -> x+y);
+			System.out.println("Sum of salary of people whose name starts with " + nameInitial + ": $" + sumInitial);
 			
 		}catch(IOException e) {
 			System.out.println("Ocurred an error while trying to read the archive: " + e.getMessage());
